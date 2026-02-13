@@ -16,7 +16,7 @@ html, body, [class*="css"] {
 /* ===== CINEMATIC BACKGROUND ===== */
 [data-testid="stAppViewContainer"] {
     background:
-        linear-gradient(rgba(5,5,20,0.8), rgba(5,5,20,0.8)),
+        linear-gradient(rgba(5,5,20,0.85), rgba(5,5,20,0.85)),
         url("https://images.unsplash.com/photo-1599058917765-a780eda07a3e");
     background-size: cover;
     background-position: center;
@@ -52,7 +52,7 @@ body::before {
 /* ===== HERO ===== */
 h1 {
     text-align: center;
-    font-size: 48px !important;
+    font-size: 46px !important;
     font-weight: 800 !important;
     color: white !important;
     letter-spacing: 2px;
@@ -77,12 +77,12 @@ div[data-baseweb="input"]:focus-within {
     border: 1px solid rgba(255,0,200,0.8) !important;
 }
 
-/* Remove white inner layer */
+/* Remove inner white */
 div[data-baseweb="input"] > div {
     background: transparent !important;
 }
 
-/* Transparent input */
+/* Transparent text */
 div[data-baseweb="input"] input {
     background: transparent !important;
     color: white !important;
@@ -100,58 +100,36 @@ div[data-baseweb="input"] input {
     color: white !important;
 }
 
-/* ===== FUTURISTIC BUTTON ===== */
+/* ===== FUTURISTIC BUTTON (WORKING HOVER) ===== */
 .stButton > button {
-    position: relative;
     background: rgba(255,255,255,0.08);
     border-radius: 50px;
     padding: 14px 50px;
     border: 2px solid rgba(255,255,255,0.4);
     color: white;
     font-weight: 600;
-    overflow: hidden;
-    transition: 0.3s ease;
+    transition: all 0.4s ease;
 }
 
-/* Animated Neon Border */
+/* Visible Neon Gradient Hover */
 .stButton > button:hover {
-    border: 2px solid transparent;
-    transform: translateY(-4px);
-}
-
-/* Gradient Border Animation */
-.stButton > button:hover::before {
-    content: "";
-    position: absolute;
-    inset: -3px;
-    border-radius: 50px;
-    padding: 3px;
     background: linear-gradient(90deg, #ff00cc, #7928ca, #00f0ff);
     background-size: 300% 300%;
-    animation: gradientMove 4s linear infinite;
-    -webkit-mask:
-        linear-gradient(#000 0 0) content-box,
-        linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-            mask-composite: exclude;
+    animation: gradientMove 4s ease infinite;
+    border: 2px solid transparent;
+    color: white;
+    box-shadow: 
+        0 0 20px #ff00cc,
+        0 0 40px #7928ca,
+        0 0 60px #00f0ff;
+    transform: translateY(-4px) scale(1.03);
 }
 
-/* Gradient animation */
+/* Gradient Animation */
 @keyframes gradientMove {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
-}
-
-/* Glow effect */
-.stButton > button:hover {
-    box-shadow: 0 0 25px rgba(255,0,200,0.7),
-                0 0 50px rgba(120,0,255,0.5);
-}
-
-/* Ripple click effect */
-.stButton > button:active {
-    transform: scale(0.96);
 }
 
 </style>
