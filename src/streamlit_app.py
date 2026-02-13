@@ -13,7 +13,7 @@ html, body, [class*="css"] {
     font-family: 'Outfit', sans-serif;
 }
 
-/* ===== CINEMATIC GYM BACKGROUND (Visible) ===== */
+/* ===== BACKGROUND ===== */
 [data-testid="stAppViewContainer"] {
     background:
         linear-gradient(rgba(10,10,20,0.45), rgba(10,10,20,0.45)),
@@ -23,21 +23,18 @@ html, body, [class*="css"] {
     background-attachment: fixed;
 }
 
-/* ===== CENTER LAYOUT ===== */
+/* ===== CENTER CONTENT ===== */
 .block-container {
     max-width: 1100px;
     margin: auto;
     padding-top: 70px;
 }
 
-/* ===== TEXT ===== */
 h1, h2, h3, h4, p, label {
     color: white !important;
 }
 
-/* ============================= */
-/* ===== GLASS INPUT STYLE ===== */
-/* ============================= */
+/* ================= INPUT STYLE ================= */
 
 div[data-baseweb="input"],
 .stSelectbox > div > div,
@@ -57,7 +54,6 @@ div[data-baseweb="input"] input {
     background: transparent !important;
     color: white !important;
     border: none !important;
-    box-shadow: none !important;
 }
 
 div[data-baseweb="input"] button {
@@ -78,9 +74,7 @@ div[data-baseweb="input"]:hover,
         0 0 35px #00f0ff !important;
 }
 
-/* ============================= */
-/* ===== NEON BUTTON ===== */
-/* ============================= */
+/* ================= BUTTON ================= */
 
 .stButton > button {
     background: rgba(255,255,255,0.12) !important;
@@ -110,9 +104,7 @@ div[data-baseweb="input"]:hover,
     100% { background-position: 0% 50%; }
 }
 
-/* ============================= */
-/* ===== FEATURE SECTION ===== */
-/* ============================= */
+/* ================= FEATURE SECTION ================= */
 
 .feature-wrapper {
     display: flex;
@@ -201,12 +193,12 @@ div[data-baseweb="input"]:hover,
 st.markdown("<h1 style='text-align:center;'>💎 FitPlan AI Elite</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align:center;'>Train Smart. Perform Elite.</p>", unsafe_allow_html=True)
 
-# ===== FEATURE SECTION =====
+# ===== FEATURE SECTION (CORRECTLY RENDERED) =====
 st.markdown("""
 <div class="feature-wrapper">
 
     <div class="side-img">
-        <img src="https://images.unsplash.com/photo-1594737625785-a6cbdabd333c">
+        <img src="https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?auto=format&fit=crop&w=600&q=80">
     </div>
 
     <div class="feature-card">
@@ -231,7 +223,7 @@ st.markdown("""
     </div>
 
     <div class="side-img">
-        <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61">
+        <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=600&q=80">
     </div>
 
 </div>
@@ -258,7 +250,7 @@ equipment = st.multiselect("Equipment",
 
 generate = st.button("Generate Elite Plan 🚀")
 
-# ===== BMI & WORKOUT =====
+# ===== LOGIC =====
 def calculate_bmi(height_cm, weight_kg):
     height_m = height_cm / 100
     return round(weight_kg / (height_m ** 2), 2)
@@ -296,7 +288,6 @@ if generate:
         st.markdown(f"### BMI: {bmi}")
         st.markdown(f"### Category: {category}")
 
-        workout_plan = generate_workout(goal, level)
         st.markdown("## 🏋️ Your Workout Plan")
-        for exercise in workout_plan:
+        for exercise in generate_workout(goal, level):
             st.markdown(f"✅ {exercise}")
