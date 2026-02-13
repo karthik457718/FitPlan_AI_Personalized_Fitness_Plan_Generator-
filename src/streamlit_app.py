@@ -42,7 +42,7 @@ body::before {
 
 /* ===== CENTER LAYOUT ===== */
 .block-container {
-    max-width: 950px;
+    max-width: 850px;
     margin: auto;
     padding-top: 70px;
     position: relative;
@@ -61,22 +61,59 @@ h2, h3, h4, p, label {
     color: white !important;
 }
 
-/* ===== GLASS INPUTS ===== */
-.stTextInput input,
-.stNumberInput input,
-.stSelectbox > div > div,
+/* ===== FULL GLASS STYLE FOR ALL INPUTS ===== */
+
+/* Text input container */
+.stTextInput > div > div {
+    background: rgba(255,255,255,0.1) !important;
+    border-radius: 30px !important;
+    border: 1px solid rgba(255,255,255,0.35) !important;
+    backdrop-filter: blur(20px);
+}
+
+/* Text input field */
+.stTextInput input {
+    background: transparent !important;
+    color: white !important;
+    padding: 16px !important;
+}
+
+/* Number input container */
+.stNumberInput > div > div {
+    background: rgba(255,255,255,0.1) !important;
+    border-radius: 30px !important;
+    border: 1px solid rgba(255,255,255,0.35) !important;
+    backdrop-filter: blur(20px);
+}
+
+/* Number input field */
+.stNumberInput input {
+    background: transparent !important;
+    color: white !important;
+    padding: 16px !important;
+}
+
+/* Remove +/- button background */
+.stNumberInput button {
+    background: transparent !important;
+    color: white !important;
+}
+
+/* Select box */
+.stSelectbox > div > div {
+    background: rgba(255,255,255,0.1) !important;
+    border-radius: 30px !important;
+    border: 1px solid rgba(255,255,255,0.35) !important;
+    backdrop-filter: blur(20px);
+    color: white !important;
+}
+
+/* Multiselect */
 .stMultiSelect > div > div {
     background: rgba(255,255,255,0.1) !important;
     border-radius: 30px !important;
     border: 1px solid rgba(255,255,255,0.35) !important;
-    color: white !important;
-    padding: 16px !important;
     backdrop-filter: blur(20px);
-}
-
-/* Remove number arrows background */
-.stNumberInput button {
-    background: transparent !important;
     color: white !important;
 }
 
