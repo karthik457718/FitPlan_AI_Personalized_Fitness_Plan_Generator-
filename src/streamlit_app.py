@@ -1,19 +1,13 @@
 import streamlit as st
 import time
-
 st.set_page_config(page_title="FitPlan AI Elite", page_icon="💎", layout="wide")
-
 st.markdown("""
 <style>
-
-/* ===== GOOGLE FONT ===== */
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
 
 html, body, [class*="css"] {
     font-family: 'Outfit', sans-serif;
 }
-
-/* ===== CINEMATIC GYM BACKGROUND ===== */
 [data-testid="stAppViewContainer"] {
     background:
         linear-gradient(rgba(10,10,20,0.75), rgba(10,10,20,0.75)),
@@ -22,8 +16,6 @@ html, body, [class*="css"] {
     background-position: center;
     background-attachment: fixed;
 }
-
-/* ===== FLOATING PARTICLES ===== */
 body::before {
     content: "";
     position: fixed;
@@ -34,13 +26,10 @@ body::before {
     animation: moveParticles 80s linear infinite;
     z-index: 0;
 }
-
 @keyframes moveParticles {
     from { transform: translate(0,0); }
     to { transform: translate(-400px,-400px); }
 }
-
-/* ===== CENTER LAYOUT ===== */
 .block-container {
     max-width: 950px;
     margin: auto;
@@ -48,20 +37,15 @@ body::before {
     position: relative;
     z-index: 1;
 }
-
-/* ===== HERO TITLE ===== */
 h1 {
     text-align: center;
     font-size: 52px !important;
     font-weight: 700 !important;
     color: white !important;
 }
-
 h2, h3, h4, p, label {
     color: white !important;
 }
-
-/* ===== GLOW HERO BAR (3rd image style) ===== */
 .glow-bar {
     height: 80px;
     border-radius: 50px;
@@ -70,7 +54,6 @@ h2, h3, h4, p, label {
     background: rgba(255,255,255,0.05);
     width: 80%;
 }
-
 .glow-bar::before {
     content: "";
     position: absolute;
@@ -85,14 +68,11 @@ h2, h3, h4, p, label {
             mask-composite: exclude;
     animation: glowMove 4s linear infinite;
 }
-
 @keyframes glowMove {
     0% { background: linear-gradient(90deg, #ff00cc, #7928ca, #00f0ff); }
     50% { background: linear-gradient(90deg, #00f0ff, #ff00cc, #7928ca); }
     100% { background: linear-gradient(90deg, #ff00cc, #7928ca, #00f0ff); }
 }
-
-/* ===== GLASS CARD ===== */
 .glass {
     background: rgba(255,255,255,0.08);
     backdrop-filter: blur(35px);
@@ -102,8 +82,6 @@ h2, h3, h4, p, label {
     box-shadow: 0 0 80px rgba(255,0,200,0.25);
     margin-bottom: 35px;
 }
-
-/* ===== GLASS INPUTS ===== */
 .stTextInput input,
 .stNumberInput input,
 .stSelectbox > div > div,
@@ -115,14 +93,10 @@ h2, h3, h4, p, label {
     padding: 16px !important;
     backdrop-filter: blur(20px);
 }
-
-/* Remove number input arrow background */
 .stNumberInput button {
     background: transparent !important;
     color: white !important;
 }
-
-/* ===== GLASS BUTTON ===== */
 .stButton > button {
     background: rgba(255,255,255,0.12);
     backdrop-filter: blur(20px);
