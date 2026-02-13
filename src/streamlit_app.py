@@ -6,17 +6,20 @@ st.set_page_config(
     layout="wide"
 )
 
+# ===============================
+# CUSTOM MODERN UI (Like Image)
+# ===============================
 st.markdown("""
 <style>
 
 /* Full Animated Gradient */
 [data-testid="stAppViewContainer"] {
     background: linear-gradient(135deg, 
-        #667eea 0%, 
-        #764ba2 25%, 
-        #6B73FF 50%, 
-        #000DFF 75%, 
-        #667eea 100%);
+        #000000 0%, 
+        #1a1a1a 25%, 
+        #2c2c2c 50%, 
+        #1a1a1a 75%, 
+        #000000 100%);
     background-size: 300% 300%;
     animation: gradientMove 12s ease infinite;
 }
@@ -29,8 +32,8 @@ st.markdown("""
 
 /* Glass Container */
 .block-container {
-    background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(18px);
     border-radius: 20px;
     padding: 2rem;
 }
@@ -46,9 +49,11 @@ h1, h2, h3, label, p {
 }
 
 /* Inputs */
+.stTextInput input,
+.stNumberInput input,
 .stSelectbox > div > div,
 .stMultiSelect > div > div {
-    background: rgba(255,255,255,0.2) !important;
+    background: rgba(255,255,255,0.15) !important;
     color: white !important;
     border-radius: 10px;
 }
@@ -67,6 +72,9 @@ h1, h2, h3, label, p {
 """, unsafe_allow_html=True)
 
 
+# ===============================
+# HEADER
+# ===============================
 col1, col2 = st.columns([2, 1])
 
 with col1:
@@ -75,27 +83,38 @@ with col1:
     st.markdown("---")
 
 with col2:
-    st.components.v1.html("""
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    <lottie-player 
-        src="https://assets9.lottiefiles.com/packages/lf20_tutvdkg0.json"
-        background="transparent"
-        speed="1"
-        style="width: 280px; height: 280px;"
-        loop
-        autoplay>
-    </lottie-player>
-    """, height=280)
+    st.image("https://cdn-icons-png.flaticon.com/512/2936/2936886.png", width=200)
 
 
-st.subheader("🎯 Customize Your Plan")
+# ===============================
+# PERSONAL INFORMATION SECTION
+# ===============================
+st.subheader("👤 Personal Information")
 
 col1, col2, col3 = st.columns(3)
 
 with col1:
+    name = st.text_input("Full Name *")
+
+with col2:
+    height_cm = st.number_input("Height (cm) *", min_value=0.0, step=0.1)
+
+with col3:
+    weight_kg = st.number_input("Weight (kg) *", min_value=0.0, step=0.1)
+
+st.markdown("---")
+
+# ===============================
+# FITNESS DETAILS SECTION
+# ===============================
+st.subheader("🎯 Fitness Details")
+
+col1, col2 = st.columns(2)
+
+with col1:
     goal = st.selectbox(
         "Select Your Goal",
-        ["Flexible", "Weight Loss", "Build Muscle", "Strength Gaining", "Abs Building"]
+        ["Flexible", "Weight Loss", "Build Muscle", "Strength Gain", "Abs Building"]
     )
 
 with col2:
@@ -103,9 +122,6 @@ with col2:
         "Fitness Level",
         ["Beginner", "Intermediate", "Advanced"]
     )
-
-with col3:
-    duration = st.slider("Workout Duration (minutes)", 20, 120, 45)
 
 equipment = st.multiselect(
     "🏋️ Select Available Equipment",
@@ -120,6 +136,29 @@ equipment = st.multiselect(
 st.markdown("---")
 
 
+# ===============================
+# BMI CALCULATION FUNCTION
+# ===============================
+def calculate_bmi(height_cm, weight_kg):
+    height_m = height_cm / 100
+    bmi = weight_kg / (height_m ** 2)
+    return round(bmi, 2)
+
+
+def bmi_category(bmi):
+    if bmi < 18.5:
+        return "Underweight"
+    elif 18.5 <= bmi < 24.9:
+        return "Normal"
+    elif 25 <= bmi < 29.9:
+        return "Overweight"
+    else:
+        return "Obese"
+
+
+# ===============================
+# WORKOUT PLAN FUNCTION (UNCHANGED)
+# ===============================
 def generate_workout(goal, level):
 
     plans = {
@@ -137,7 +176,7 @@ def generate_workout(goal, level):
             "Dumbbell Shoulder Press – 3x12",
             "Resistance Band Rows – 3x15"
         ],
-        "Strength Gaining": [
+        "Strength Gain": [
             "Deadlift – 5x5",
             "Pullups – 4x6",
             "Dumbbell Press – 4x6",
@@ -170,21 +209,49 @@ def generate_workout(goal, level):
     return workout
 
 
-if st.button("Generate Workout Plan 🚀"):
+# ===============================
+# MAIN BUTTON
+# ===============================
+if st.button("Generate Fitness Report 🚀"):
 
-    st.subheader("🏆 Your Personalized Plan")
-    plan = generate_workout(goal, level)
+    # ===== INPUT VALIDATION =====
+    if name.strip() == "":
+        st.error("⚠ Name is required.")
+    elif height_cm <= 0 or weight_kg <= 0:
+        st.error("⚠ Height and Weight must be greater than zero.")
+    else:
 
-    for exercise in plan:
+        bmi = calculate_bmi(height_cm, weight_kg)
+        category = bmi_category(bmi)
+
+        st.subheader("📊 Your BMI Result")
+
         st.markdown(f"""
         <div style="
-            padding:15px;
-            margin-bottom:10px;
-            background:rgba(255,255,255,0.15);
-            border-radius:12px;
-            color:white;">
-            ✅ {exercise}
+            padding:20px;
+            background:rgba(255,255,255,0.12);
+            border-radius:15px;
+            margin-bottom:20px;">
+            <h3>👤 {name}</h3>
+            <h2>BMI: {bmi}</h2>
+            <h3>Category: {category}</h3>
         </div>
         """, unsafe_allow_html=True)
 
-    st.success("Stay consistent. Results will follow! 💯🔥")
+        # ===== Workout Plan =====
+        st.subheader("🏆 Your Personalized Workout Plan")
+
+        plan = generate_workout(goal, level)
+
+        for exercise in plan:
+            st.markdown(f"""
+            <div style="
+                padding:15px;
+                margin-bottom:10px;
+                background:rgba(255,255,255,0.15);
+                border-radius:12px;">
+                ✅ {exercise}
+            </div>
+            """, unsafe_allow_html=True)
+
+        st.success("Stay consistent. Results will follow! 💯🔥")
