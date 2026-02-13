@@ -61,50 +61,57 @@ h2, h3, h4, p, label {
     color: white !important;
 }
 
-/* ===== FULL GLASS STYLE FOR ALL INPUTS ===== */
+/* ===== REMOVE STREAMLIT BASEWEB WHITE BACKGROUND ===== */
 
-/* Container styling */
-.stTextInput > div > div,
-.stNumberInput > div > div,
-.stSelectbox > div > div,
-.stMultiSelect > div > div {
+/* Main BaseWeb wrapper */
+div[data-baseweb="input"] {
     background: rgba(255,255,255,0.1) !important;
     border-radius: 30px !important;
     border: 1px solid rgba(255,255,255,0.35) !important;
     backdrop-filter: blur(20px);
 }
 
-/* Remove white background inside input */
-.stTextInput input,
-.stNumberInput input {
+/* Inner wrapper */
+div[data-baseweb="input"] > div {
     background: transparent !important;
-    background-color: transparent !important;
+}
+
+/* Input field */
+div[data-baseweb="input"] input {
+    background: transparent !important;
     color: white !important;
     border: none !important;
     box-shadow: none !important;
     padding: 16px !important;
 }
 
-/* Remove white on focus */
-.stTextInput input:focus,
-.stNumberInput input:focus {
+/* Remove focus white */
+div[data-baseweb="input"] input:focus {
     background: transparent !important;
     outline: none !important;
-    box-shadow: none !important;
 }
 
-/* Remove browser autofill white */
+/* Remove autofill white */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
     -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
     -webkit-text-fill-color: white !important;
-    transition: background-color 5000s ease-in-out 0s;
 }
 
-/* Remove number arrows background */
-.stNumberInput button {
+/* Remove number +/- background */
+div[data-baseweb="input"] button {
     background: transparent !important;
+    color: white !important;
+}
+
+/* Selectbox & Multiselect */
+.stSelectbox > div > div,
+.stMultiSelect > div > div {
+    background: rgba(255,255,255,0.1) !important;
+    border-radius: 30px !important;
+    border: 1px solid rgba(255,255,255,0.35) !important;
+    backdrop-filter: blur(20px);
     color: white !important;
 }
 
