@@ -35,18 +35,26 @@ h1, h2, h3, h4, p, label {
     color: white !important;
 }
 
-/* ===== GLASS INPUTS (NO WHITE BOXES) ===== */
-div[data-baseweb="input"] {
+/* ============================= */
+/* ===== GLASS INPUT STYLE ===== */
+/* ============================= */
+
+div[data-baseweb="input"],
+.stSelectbox > div > div,
+.stMultiSelect > div > div {
     background: rgba(255,255,255,0.08) !important;
     border-radius: 30px !important;
-    border: 1px solid rgba(255,255,255,0.35) !important;
+    border: 2px solid rgba(255,255,255,0.35) !important;
     backdrop-filter: blur(15px);
+    transition: all 0.3s ease !important;
 }
 
+/* Remove inner white */
 div[data-baseweb="input"] > div {
     background: transparent !important;
 }
 
+/* Actual input */
 div[data-baseweb="input"] input {
     background: transparent !important;
     color: white !important;
@@ -54,28 +62,32 @@ div[data-baseweb="input"] input {
     box-shadow: none !important;
 }
 
-div[data-baseweb="input"] input:focus {
-    background: transparent !important;
-    outline: none !important;
-}
-
-/* Fix selectboxes */
-.stSelectbox > div > div,
-.stMultiSelect > div > div {
-    background: rgba(255,255,255,0.08) !important;
-    border-radius: 30px !important;
-    border: 1px solid rgba(255,255,255,0.35) !important;
-    backdrop-filter: blur(15px);
-    color: white !important;
-}
-
-/* Remove number +/- white area */
+/* Remove +/- white area */
 div[data-baseweb="input"] button {
     background: transparent !important;
     color: white !important;
 }
 
-/* ===== ULTRA NEON BUTTON ===== */
+/* ============================= */
+/* ===== HOVER GLOW EFFECT ===== */
+/* ============================= */
+
+div[data-baseweb="input"]:hover,
+.stSelectbox > div > div:hover,
+.stMultiSelect > div > div:hover {
+    border: 2px solid transparent !important;
+    background: linear-gradient(rgba(20,20,40,0.8), rgba(20,20,40,0.8)) padding-box,
+                linear-gradient(90deg, #ff00cc, #7928ca, #00f0ff) border-box !important;
+    box-shadow:
+        0 0 15px #ff00cc,
+        0 0 25px #7928ca,
+        0 0 35px #00f0ff !important;
+}
+
+/* ============================= */
+/* ===== NEON BUTTON ===== */
+/* ============================= */
+
 .stButton > button {
     background: rgba(255,255,255,0.12) !important;
     border-radius: 40px !important;
@@ -86,7 +98,6 @@ div[data-baseweb="input"] button {
     transition: all 0.3s ease !important;
 }
 
-/* Neon Hover Effect */
 .stButton > button:hover {
     background: linear-gradient(90deg, #ff00cc, #7928ca, #00f0ff) !important;
     background-size: 300% 300% !important;
@@ -99,7 +110,6 @@ div[data-baseweb="input"] button {
     transform: translateY(-4px) scale(1.03) !important;
 }
 
-/* Glow Animation */
 @keyframes neonMove {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -118,15 +128,18 @@ name = st.text_input("Full Name")
 height_cm = st.number_input("Height (cm)", min_value=0.0)
 weight_kg = st.number_input("Weight (kg)", min_value=0.0)
 
-goal = st.selectbox("Goal",
+goal = st.selectbox(
+    "Goal",
     ["Build Muscle", "Weight Loss", "Strength Gain", "Abs Building", "Flexible"]
 )
 
-level = st.selectbox("Level",
+level = st.selectbox(
+    "Level",
     ["Beginner", "Intermediate", "Advanced"]
 )
 
-equipment = st.multiselect("Equipment",
+equipment = st.multiselect(
+    "Equipment",
     ["Dumbbells", "Resistance Band", "Yoga Mat", "No Equipment",
      "Bench", "Treadmill", "Cycle", "Pullup Bar"]
 )
