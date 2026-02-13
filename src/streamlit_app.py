@@ -5,91 +5,100 @@ st.set_page_config(page_title="AI Fitness Planner", page_icon="💪", layout="wi
 st.markdown("""
 <style>
 
+/* Import modern font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+html, body, [class*="css"] {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Transparent gym background */
 [data-testid="stAppViewContainer"] {
-    background-image: url("https://images.unsplash.com/photo-1599058917765-a780eda07a3e");
+    background: 
+        linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
+        url("https://images.unsplash.com/photo-1599058917765-a780eda07a3e");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 }
 
+/* Center container */
 .block-container {
-    background: rgba(0, 0, 0, 0.65);
-    backdrop-filter: blur(18px);
-    border-radius: 20px;
+    max-width: 1100px;
+    margin: auto;
     padding: 2rem;
 }
 
+/* Glass effect */
+.glass-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(18px);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+/* White text */
 h1, h2, h3, h4, label, p {
     color: white !important;
 }
 
+/* Inputs styling */
 .stTextInput input,
 .stNumberInput input,
 .stSelectbox > div > div,
 .stMultiSelect > div > div {
-    background: rgba(255,255,255,0.15) !important;
+    background: rgba(255,255,255,0.12) !important;
     color: white !important;
-    border-radius: 10px;
+    border-radius: 12px !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
 }
 
+/* Rounded Gradient Button */
 .stButton > button {
-    background: linear-gradient(90deg, #ff512f, #dd2476);
+    background: linear-gradient(90deg, #ff7b00, #ff0066);
     color: white;
-    border-radius: 12px;
-    padding: 12px 28px;
+    border-radius: 30px;
+    padding: 14px 35px;
     border: none;
     font-weight: 600;
+    font-size: 16px;
+    transition: 0.3s ease;
 }
 
-.card {
-    background: rgba(255,255,255,0.1);
-    padding: 20px;
-    border-radius: 15px;
-    margin-bottom: 20px;
-}
-
-.bmi-bar {
-    height: 18px;
-    border-radius: 10px;
-    background: linear-gradient(to right, 
-        #00bfff 0%, 
-        #00ff00 25%, 
-        #ffff00 50%, 
-        #ff8000 75%, 
-        #ff0000 100%);
+.stButton > button:hover {
+    background: linear-gradient(90deg, #ff0066, #ff7b00);
+    transform: scale(1.05);
 }
 
 </style>
 """, unsafe_allow_html=True)
 
-st.title("💪 AI Fitness Planner")
-st.markdown("### Build your personalized workout plan")
+st.markdown("<h1 style='text-align:center;'>💪 AI Fitness Planner</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align:center;'>Build your personalized workout plan</p>", unsafe_allow_html=True)
 st.markdown("---")
 
-left, right = st.columns([1,1])
+col1, col2 = st.columns(2)
 
-with left:
+with col1:
+    st.markdown('<div class="glass-card">', unsafe_allow_html=True)
 
-    st.markdown("## 👤 Personal Information")
-
+    st.subheader("👤 Personal Information")
     name = st.text_input("Full Name *")
     height_cm = st.number_input("Height (cm) *", min_value=0.0)
     weight_kg = st.number_input("Weight (kg) *", min_value=0.0)
 
-    st.markdown("## 🎯 Fitness Details")
-
-    goal = st.selectbox(
-        "Select Your Goal",
+    st.subheader("🎯 Fitness Details")
+    goal = st.selectbox("Select Your Goal",
         ["Flexible", "Weight Loss", "Build Muscle", "Strength Gain", "Abs Building"]
     )
 
-    level = st.selectbox(
-        "Fitness Level",
+    level = st.selectbox("Fitness Level",
         ["Beginner", "Intermediate", "Advanced"]
     )
 
-    equipment = st.multiselect(
-        "Available Equipment",
+    equipment = st.multiselect("Available Equipment",
         ["Dumbbells", "Resistance Band", "Yoga Mat", "No Equipment",
          "Inclined Bench", "Treadmill", "Cycle", "Skipping Rope",
          "Hand Gripper", "Pullups Bar", "Weight Plates",
@@ -97,6 +106,8 @@ with left:
     )
 
     generate = st.button("Generate Fitness Report 🚀")
+
+    st.markdown('</div>', unsafe_allow_html=True)
 
 
 def calculate_bmi(height_cm, weight_kg):
@@ -115,56 +126,44 @@ def bmi_category(bmi):
         return "Obese"
 
 def generate_workout(goal, level):
-
     plans = {
-        "Weight Loss": ["Jump Rope – 3x2 min","Treadmill – 15 min","Burpees – 3x12","Mountain Climbers – 3x20"],
-        "Build Muscle": ["Dumbbell Squats – 4x12","Bench Press – 4x10","Pullups – 3x8","Shoulder Press – 3x12"],
-        "Strength Gain": ["Deadlift – 5x5","Pullups – 4x6","Dumbbell Press – 4x6"],
-        "Abs Building": ["Plank – 3x60 sec","Leg Raises – 3x15","Russian Twists – 3x20"],
-        "Flexible": ["Yoga Flow – 15 min","Stretching – 10 min","Mobility – 10 min"]
+        "Weight Loss": ["Jump Rope – 3x2 min","Treadmill – 15 min","Burpees – 3x12"],
+        "Build Muscle": ["Dumbbell Squats – 4x12","Bench Press – 4x10","Pullups – 3x8"],
+        "Strength Gain": ["Deadlift – 5x5","Pullups – 4x6"],
+        "Abs Building": ["Plank – 3x60 sec","Leg Raises – 3x15"],
+        "Flexible": ["Yoga Flow – 15 min","Stretching – 10 min"]
     }
 
     workout = plans.get(goal, [])
-
     if level == "Intermediate":
         workout = [w + " 🔥" for w in workout]
     elif level == "Advanced":
         workout = [w + " 💪🔥" for w in workout]
-
     return workout
 
 
-with right:
-
+with col2:
     if generate:
-
         if name.strip() == "":
             st.error("Name is required.")
         elif height_cm <= 0 or weight_kg <= 0:
             st.error("Height and Weight must be greater than zero.")
         else:
-
             bmi = calculate_bmi(height_cm, weight_kg)
             category = bmi_category(bmi)
 
-            st.markdown("## 💪 Your BMI Result")
+            st.markdown('<div class="glass-card">', unsafe_allow_html=True)
+            st.subheader("💪 Your BMI Result")
+            st.write(f"### {name}")
+            st.write(f"## BMI: {bmi}")
+            st.write(f"### Category: {category}")
+            st.markdown('</div>', unsafe_allow_html=True)
 
-            st.markdown(f"""
-            <div class="card">
-                <h3>{name}</h3>
-                <h2>BMI: {bmi}</h2>
-                <h4>Category: {category}</h4>
-                <div class="bmi-bar"></div>
-            </div>
-            """, unsafe_allow_html=True)
-
-            st.markdown("## 🏆 Your Workout Plan")
-
+            st.markdown('<div class="glass-card">', unsafe_allow_html=True)
+            st.subheader("🏆 Your Workout Plan")
             plan = generate_workout(goal, level)
-
-            for exercise in plan:
-                st.markdown(f"""
-                <div class="card">✅ {exercise}</div>
-                """, unsafe_allow_html=True)
+            for ex in plan:
+                st.write("✅", ex)
+            st.markdown('</div>', unsafe_allow_html=True)
 
             st.success("Stay consistent. Results will follow! 💯🔥")
