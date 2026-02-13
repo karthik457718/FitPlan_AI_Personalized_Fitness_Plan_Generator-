@@ -6,14 +6,14 @@ st.set_page_config(page_title="FitPlan AI Ultra", page_icon="💎", layout="wide
 st.markdown("""
 <style>
 
-/* ===== FUTURISTIC FONT ===== */
+/* ===== FONT ===== */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap');
 
 html, body, [class*="css"] {
     font-family: 'Orbitron', sans-serif;
 }
 
-/* ===== CINEMATIC BACKGROUND ===== */
+/* ===== BACKGROUND ===== */
 [data-testid="stAppViewContainer"] {
     background:
         linear-gradient(rgba(5,5,20,0.85), rgba(5,5,20,0.85)),
@@ -23,74 +23,33 @@ html, body, [class*="css"] {
     background-attachment: fixed;
 }
 
-/* ===== FLOATING PARTICLES ===== */
-body::before {
-    content: "";
-    position: fixed;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,0,200,0.12) 2px, transparent 2px);
-    background-size: 60px 60px;
-    animation: moveParticles 100s linear infinite;
-    z-index: 0;
-}
-
-@keyframes moveParticles {
-    from { transform: translate(0,0); }
-    to { transform: translate(-500px,-500px); }
-}
-
-/* ===== CENTER LAYOUT ===== */
+/* ===== CENTER ===== */
 .block-container {
     max-width: 850px;
     margin: auto;
     padding-top: 70px;
-    position: relative;
-    z-index: 1;
 }
 
-/* ===== HERO ===== */
-h1 {
-    text-align: center;
-    font-size: 46px !important;
-    font-weight: 800 !important;
-    color: white !important;
-    letter-spacing: 2px;
-}
-
-h2, h3, h4, p, label {
+/* ===== TEXT ===== */
+h1, h2, h3, h4, p, label {
     color: white !important;
 }
 
-/* ===== GLASS INPUT STYLE ===== */
+/* ===== GLASS INPUT ===== */
 div[data-baseweb="input"] {
     background: rgba(255,255,255,0.08) !important;
     border-radius: 40px !important;
     border: 1px solid rgba(255,255,255,0.35) !important;
     backdrop-filter: blur(20px);
-    transition: 0.3s ease;
 }
 
-/* Glow on focus */
-div[data-baseweb="input"]:focus-within {
-    box-shadow: 0 0 20px rgba(255,0,200,0.6);
-    border: 1px solid rgba(255,0,200,0.8) !important;
-}
-
-/* Remove inner white */
-div[data-baseweb="input"] > div {
-    background: transparent !important;
-}
-
-/* Transparent text */
 div[data-baseweb="input"] input {
     background: transparent !important;
     color: white !important;
     border: none !important;
-    padding: 16px !important;
 }
 
-/* Select styling */
+/* ===== GLASS SELECT ===== */
 .stSelectbox > div > div,
 .stMultiSelect > div > div {
     background: rgba(255,255,255,0.08) !important;
@@ -100,33 +59,32 @@ div[data-baseweb="input"] input {
     color: white !important;
 }
 
-/* ===== FUTURISTIC BUTTON (WORKING HOVER) ===== */
+/* ===== FORCE HOVER BUTTON ===== */
 .stButton > button {
-    background: rgba(255,255,255,0.08);
-    border-radius: 50px;
-    padding: 14px 50px;
-    border: 2px solid rgba(255,255,255,0.4);
-    color: white;
-    font-weight: 600;
-    transition: all 0.4s ease;
+    background: rgba(255,255,255,0.08) !important;
+    border-radius: 50px !important;
+    padding: 14px 50px !important;
+    border: 2px solid rgba(255,255,255,0.4) !important;
+    color: white !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
 }
 
-/* Visible Neon Gradient Hover */
+/* THIS WILL DEFINITELY WORK */
 .stButton > button:hover {
-    background: linear-gradient(90deg, #ff00cc, #7928ca, #00f0ff);
-    background-size: 300% 300%;
-    animation: gradientMove 4s ease infinite;
-    border: 2px solid transparent;
-    color: white;
-    box-shadow: 
+    background: linear-gradient(90deg, #ff00cc, #7928ca, #00f0ff) !important;
+    background-size: 300% 300% !important;
+    animation: neonMove 4s ease infinite !important;
+    border: none !important;
+    box-shadow:
         0 0 20px #ff00cc,
         0 0 40px #7928ca,
-        0 0 60px #00f0ff;
-    transform: translateY(-4px) scale(1.03);
+        0 0 60px #00f0ff !important;
+    transform: translateY(-4px) !important;
 }
 
-/* Gradient Animation */
-@keyframes gradientMove {
+/* Animation */
+@keyframes neonMove {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
@@ -159,22 +117,17 @@ equipment = st.multiselect("Equipment",
 
 generate = st.button("Generate Ultra Plan 🚀")
 
-# ===== BMI =====
-def calculate_bmi(height_cm, weight_kg):
-    height_m = height_cm / 100
-    return round(weight_kg / (height_m ** 2), 2)
+# ===== LOGIC =====
+def calculate_bmi(h, w):
+    h = h / 100
+    return round(w / (h ** 2), 2)
 
-def bmi_category(bmi):
-    if bmi < 18.5:
-        return "Underweight"
-    elif bmi < 25:
-        return "Normal"
-    elif bmi < 30:
-        return "Overweight"
-    else:
-        return "Obese"
+def bmi_category(b):
+    if b < 18.5: return "Underweight"
+    elif b < 25: return "Normal"
+    elif b < 30: return "Overweight"
+    else: return "Obese"
 
-# ===== WORKOUT =====
 def generate_workout(goal, level):
     plans = {
         "Weight Loss": ["HIIT Sprint", "Burpees", "Mountain Climbers"],
@@ -201,12 +154,6 @@ if generate:
         st.subheader(f"👤 {name}")
         st.markdown(f"## BMI: {bmi}")
         st.markdown(f"### Category: {category}")
-
-        progress = min(bmi / 40, 1.0)
-        bar = st.progress(0)
-        for i in range(int(progress * 100)):
-            time.sleep(0.01)
-            bar.progress(i + 1)
 
         st.markdown("---")
         st.subheader("🏋️ ULTRA WORKOUT PLAN")
