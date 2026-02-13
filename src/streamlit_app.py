@@ -3,6 +3,7 @@ import time
 
 st.set_page_config(page_title="FitPlan AI Elite", page_icon="💎", layout="wide")
 
+# ================== CSS ==================
 st.markdown("""
 <style>
 
@@ -13,7 +14,7 @@ html, body, [class*="css"] {
     font-family: 'Outfit', sans-serif;
 }
 
-/* ===== CINEMATIC GYM BACKGROUND (MORE VISIBLE) ===== */
+/* ===== CINEMATIC BACKGROUND ===== */
 [data-testid="stAppViewContainer"] {
     background:
         linear-gradient(rgba(10,10,20,0.45), rgba(10,10,20,0.45)),
@@ -23,22 +24,12 @@ html, body, [class*="css"] {
     background-attachment: fixed;
 }
 
-/* ===== CENTER LAYOUT ===== */
-.block-container {
-    max-width: 850px;
-    margin: auto;
-    padding-top: 70px;
-}
-
 /* ===== TEXT COLORS ===== */
 h1, h2, h3, h4, p, label {
     color: white !important;
 }
 
-/* ============================= */
-/* ===== GLASS INPUT STYLE ===== */
-/* ============================= */
-
+/* ===== GLASS INPUT ===== */
 div[data-baseweb="input"],
 .stSelectbox > div > div,
 .stMultiSelect > div > div {
@@ -49,29 +40,22 @@ div[data-baseweb="input"],
     transition: all 0.3s ease !important;
 }
 
-/* Remove inner white */
 div[data-baseweb="input"] > div {
     background: transparent !important;
 }
 
-/* Actual input */
 div[data-baseweb="input"] input {
     background: transparent !important;
     color: white !important;
     border: none !important;
-    box-shadow: none !important;
 }
 
-/* Remove +/- white area */
 div[data-baseweb="input"] button {
     background: transparent !important;
     color: white !important;
 }
 
-/* ============================= */
-/* ===== HOVER GLOW EFFECT ===== */
-/* ============================= */
-
+/* ===== HOVER GLOW ===== */
 div[data-baseweb="input"]:hover,
 .stSelectbox > div > div:hover,
 .stMultiSelect > div > div:hover {
@@ -84,10 +68,7 @@ div[data-baseweb="input"]:hover,
         0 0 35px #00f0ff !important;
 }
 
-/* ============================= */
 /* ===== NEON BUTTON ===== */
-/* ============================= */
-
 .stButton > button {
     background: rgba(255,255,255,0.12) !important;
     border-radius: 40px !important;
@@ -116,14 +97,37 @@ div[data-baseweb="input"]:hover,
     100% { background-position: 0% 50%; }
 }
 
+img {
+    border-radius: 20px;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
-# ===== HERO =====
-st.markdown("<h1>💎 FitPlan AI Elite</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align:center;'>Train Smart. Perform Elite.</p>", unsafe_allow_html=True)
+# ================== HERO LAYOUT ==================
 
-# ===== FORM =====
+left, center, right = st.columns([1,2,1])
+
+with left:
+    st.image(
+        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b",
+        use_column_width=True
+    )
+
+with center:
+    st.markdown("<h1 style='text-align:center;'>💎 FitPlan AI Elite</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align:center;'>Train Smart. Perform Elite.</p>", unsafe_allow_html=True)
+
+with right:
+    st.image(
+        "https://images.unsplash.com/photo-1558611848-73f7eb4001a1",
+        use_column_width=True
+    )
+
+st.markdown("---")
+
+# ================== FORM ==================
+
 name = st.text_input("Full Name")
 
 height_cm = st.number_input(
@@ -160,7 +164,8 @@ equipment = st.multiselect(
 
 generate = st.button("Generate Elite Plan 🚀")
 
-# ===== BMI FUNCTIONS =====
+# ================== BMI ==================
+
 def calculate_bmi(height_cm, weight_kg):
     height_m = height_cm / 100
     return round(weight_kg / (height_m ** 2), 2)
@@ -175,48 +180,21 @@ def bmi_category(bmi):
     else:
         return "Obese"
 
-# ===== WORKOUT GENERATOR =====
 def generate_workout(goal, level):
     plans = {
-        "Weight Loss": [
-            "Jump Rope – 3x2 min",
-            "Mountain Climbers – 3x20",
-            "Burpees – 3x12",
-            "Cycling – 10 min"
-        ],
-        "Build Muscle": [
-            "Dumbbell Squats – 4x12",
-            "Bench Press – 4x10",
-            "Pullups – 3x8",
-            "Shoulder Press – 3x12"
-        ],
-        "Strength Gain": [
-            "Deadlifts – 5x5",
-            "Pullups – 4x6",
-            "Bench Press – 4x6"
-        ],
-        "Abs Building": [
-            "Plank – 3x60 sec",
-            "Leg Raises – 3x15",
-            "Russian Twists – 3x20"
-        ],
-        "Flexible": [
-            "Yoga Flow – 15 min",
-            "Hamstring Stretch – 3x30 sec",
-            "Hip Mobility – 10 min"
-        ]
+        "Weight Loss": ["Jump Rope – 3x2 min", "Burpees – 3x12"],
+        "Build Muscle": ["Bench Press – 4x10", "Pullups – 3x8"],
+        "Strength Gain": ["Deadlifts – 5x5"],
+        "Abs Building": ["Planks – 3x60 sec"],
+        "Flexible": ["Yoga Flow – 20 min"]
     }
-
     workout = plans.get(goal, [])
-
     if level == "Intermediate":
         workout = [w + " 🔥" for w in workout]
     elif level == "Advanced":
-        workout = [w + " 💪 (Increase intensity)" for w in workout]
-
+        workout = [w + " 💪 ELITE" for w in workout]
     return workout
 
-# ===== RESULTS =====
 if generate:
     if name.strip() == "":
         st.error("Please enter your name.")
@@ -228,20 +206,8 @@ if generate:
         st.markdown(f"### BMI: {bmi}")
         st.markdown(f"### Category: {category}")
 
-        progress = min(bmi / 40, 1.0)
-        bar = st.progress(0)
-        for i in range(int(progress * 100)):
-            time.sleep(0.01)
-            bar.progress(i + 1)
-
         st.markdown("---")
         st.subheader("🏋️ Your Personalized Workout Plan")
 
-        workout_plan = generate_workout(goal, level)
-
-        for exercise in workout_plan:
+        for exercise in generate_workout(goal, level):
             st.markdown(f"✅ {exercise}")
-
-        if equipment:
-            st.markdown("### 🛠 Equipment Selected:")
-            st.write(", ".join(equipment))
