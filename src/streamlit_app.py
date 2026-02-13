@@ -35,15 +35,48 @@ h1, h2, h3, h4, p, label {
     color: white !important;
 }
 
-/* ===== GLASS INPUT STYLE ===== */
-.stTextInput > div > div,
-.stNumberInput > div > div,
-.stSelectbox > div > div,
-.stMultiSelect > div > div {
-    background: rgba(255,255,255,0.1) !important;
+/* ===== REMOVE WHITE INPUT BOXES ===== */
+
+/* Override Streamlit BaseWeb wrapper */
+div[data-baseweb="input"] {
+    background: rgba(255,255,255,0.08) !important;
     border-radius: 30px !important;
     border: 1px solid rgba(255,255,255,0.35) !important;
     backdrop-filter: blur(15px);
+}
+
+/* Remove inner white layer */
+div[data-baseweb="input"] > div {
+    background: transparent !important;
+}
+
+/* Make actual input transparent */
+div[data-baseweb="input"] input {
+    background: transparent !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Remove white focus */
+div[data-baseweb="input"] input:focus {
+    background: transparent !important;
+    outline: none !important;
+}
+
+/* Fix selectbox */
+.stSelectbox > div > div,
+.stMultiSelect > div > div {
+    background: rgba(255,255,255,0.08) !important;
+    border-radius: 30px !important;
+    border: 1px solid rgba(255,255,255,0.35) !important;
+    backdrop-filter: blur(15px);
+    color: white !important;
+}
+
+/* Remove number +/- background */
+div[data-baseweb="input"] button {
+    background: transparent !important;
     color: white !important;
 }
 
@@ -59,7 +92,7 @@ h1, h2, h3, h4, p, label {
 }
 
 .stButton > button:hover {
-    box-shadow: 0 0 30px rgba(255,0,200,0.5);
+    box-shadow: 0 0 25px rgba(255,0,200,0.5);
     transform: translateY(-2px);
 }
 
