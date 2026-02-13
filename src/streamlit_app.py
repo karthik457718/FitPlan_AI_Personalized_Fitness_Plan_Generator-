@@ -13,7 +13,7 @@ html, body, [class*="css"] {
     font-family: 'Orbitron', sans-serif;
 }
 
-/* ===== BACKGROUND ===== */
+/* ===== CINEMATIC BACKGROUND ===== */
 [data-testid="stAppViewContainer"] {
     background:
         linear-gradient(rgba(5,5,20,0.85), rgba(5,5,20,0.85)),
@@ -23,11 +23,30 @@ html, body, [class*="css"] {
     background-attachment: fixed;
 }
 
-/* ===== CENTER ===== */
+/* ===== FLOATING PARTICLES ===== */
+body::before {
+    content: "";
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,0,200,0.1) 2px, transparent 2px);
+    background-size: 70px 70px;
+    animation: moveParticles 100s linear infinite;
+    z-index: 0;
+}
+
+@keyframes moveParticles {
+    from { transform: translate(0,0); }
+    to { transform: translate(-400px,-400px); }
+}
+
+/* ===== CENTER LAYOUT ===== */
 .block-container {
     max-width: 850px;
     margin: auto;
     padding-top: 70px;
+    position: relative;
+    z-index: 1;
 }
 
 /* ===== TEXT ===== */
@@ -35,12 +54,18 @@ h1, h2, h3, h4, p, label {
     color: white !important;
 }
 
-/* ===== GLASS INPUT ===== */
+h1 {
+    text-align: center;
+    font-size: 44px !important;
+    letter-spacing: 2px;
+}
+
+/* ===== GLASS INPUTS ===== */
 div[data-baseweb="input"] {
     background: rgba(255,255,255,0.08) !important;
     border-radius: 40px !important;
     border: 1px solid rgba(255,255,255,0.35) !important;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(15px);
 }
 
 div[data-baseweb="input"] input {
@@ -55,11 +80,11 @@ div[data-baseweb="input"] input {
     background: rgba(255,255,255,0.08) !important;
     border-radius: 40px !important;
     border: 1px solid rgba(255,255,255,0.35) !important;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(15px);
     color: white !important;
 }
 
-/* ===== FORCE HOVER BUTTON ===== */
+/* ===== NEON HOVER BUTTON ===== */
 .stButton > button {
     background: rgba(255,255,255,0.08) !important;
     border-radius: 50px !important;
@@ -70,7 +95,7 @@ div[data-baseweb="input"] input {
     transition: all 0.3s ease !important;
 }
 
-/* THIS WILL DEFINITELY WORK */
+/* HOVER EFFECT (WORKING VERSION) */
 .stButton > button:hover {
     background: linear-gradient(90deg, #ff00cc, #7928ca, #00f0ff) !important;
     background-size: 300% 300% !important;
@@ -83,7 +108,6 @@ div[data-baseweb="input"] input {
     transform: translateY(-4px) !important;
 }
 
-/* Animation */
 @keyframes neonMove {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -117,17 +141,22 @@ equipment = st.multiselect("Equipment",
 
 generate = st.button("Generate Ultra Plan 🚀")
 
-# ===== LOGIC =====
-def calculate_bmi(h, w):
-    h = h / 100
-    return round(w / (h ** 2), 2)
+# ===== BMI FUNCTIONS =====
+def calculate_bmi(height_cm, weight_kg):
+    height_m = height_cm / 100
+    return round(weight_kg / (height_m ** 2), 2)
 
-def bmi_category(b):
-    if b < 18.5: return "Underweight"
-    elif b < 25: return "Normal"
-    elif b < 30: return "Overweight"
-    else: return "Obese"
+def bmi_category(bmi):
+    if bmi < 18.5:
+        return "Underweight"
+    elif bmi < 25:
+        return "Normal"
+    elif bmi < 30:
+        return "Overweight"
+    else:
+        return "Obese"
 
+# ===== WORKOUT GENERATOR =====
 def generate_workout(goal, level):
     plans = {
         "Weight Loss": ["HIIT Sprint", "Burpees", "Mountain Climbers"],
@@ -136,11 +165,14 @@ def generate_workout(goal, level):
         "Abs Building": ["Planks", "Leg Raises"],
         "Flexible": ["Yoga Flow", "Mobility Training"]
     }
+
     workout = plans.get(goal, [])
+
     if level == "Intermediate":
         workout = [w + " 🔥" for w in workout]
     elif level == "Advanced":
         workout = [w + " 💎 ELITE" for w in workout]
+
     return workout
 
 # ===== RESULTS =====
@@ -152,7 +184,7 @@ if generate:
         category = bmi_category(bmi)
 
         st.subheader(f"👤 {name}")
-        st.markdown(f"## BMI: {bmi}")
+        st.markdown(f"### BMI: {bmi}")
         st.markdown(f"### Category: {category}")
 
         st.markdown("---")
