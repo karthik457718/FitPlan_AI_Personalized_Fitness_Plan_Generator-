@@ -1,169 +1,75 @@
-# 🏋️ FitPlan AI – Personalized Fitness Plan Generator  
-## 📌 Milestone 1: Front-End Development (BMI Calculator)
+FitPlan AI – Personalized Fitness Plan Generator 
 
----
+Milestone 1: Front-End Development (BMI Calculator) 
 
-## 🎯 Objective of the Milestone
+Objective of the Milestone 
 
-The objective of Milestone 1 is to design and develop a user-friendly web application that collects essential fitness details from users and accurately calculates their Body Mass Index (BMI).
+The Milestone 1’s aim is to design and develop a web application that is easy to use and that gathers necessary fitness-related information from users and computes their BMI body mass index accurately. The milestone thus lays the groundwork of the FitPlan AI project before further integrating and utilising AI-based personalising fitness recommendation services. 
 
-This milestone builds the foundation of the FitPlan AI project before integrating AI-based personalized fitness recommendations.
+Key Objectives: 
 
-### Key Objectives:
-- Create an interactive and structured fitness profile form  
-- Collect essential health and fitness information  
-- Implement accurate BMI calculation logic  
-- Classify BMI into standard health categories  
-- Apply proper input validation  
-- Deploy the application on Hugging Face Spaces  
+Fitness profile form (Interactive) – create a structured form. Collect basic information related to the user’s health and fitness. Write logic for BMI calculation. Determine the health categories based on BMI results. Perform input validation. Successfully host the app on Huggingface space”. 
 
----
+BMI Formula Explanation 
 
-## 📐 BMI Formula Explanation
+Body Mass Index (BMI) is a standard measurement that is used to ascertain whether or not an individual has a healthy body weight for their height. 
 
-Body Mass Index (BMI) is a standard measurement used to determine whether a person has a healthy body weight relative to their height.
+Formula Used: 
 
-### ✅ Formula Used:
+BMI = Weight (kg) / (height (m))2 
 
-```
-BMI = Weight (kg) / (Height (m))²
-```
+Steps Implemented in the Application: 
 
-### 🔎 Steps Implemented in the Application:
+Convert height in centimeters to meters. Use the BMI formula. Evaluate the result to two decimal places. 
 
-1. Convert height from centimeters to meters  
-   ```
-   height_in_meters = height_in_cm / 100
-   ```
+BMI Classification Categories 
 
-2. Apply the BMI formula  
-   ```
-   BMI = weight / (height_in_meters ** 2)
-   ```
+Based on the calculated BMI, the user is automatically classified by the application. 
 
-3. Round the result to two decimal places  
-   ```
-   BMI = round(BMI, 2)
-   ```
+| BMI Range        | Category     | | | 18.5 and below  | Underweight | | 18.5 – 24.9      | Normal       | | 25 – 29.9        | Overweight   | | 30 and above     | Obese        | 
 
----
+Steps Performed 
 
-## 📊 BMI Classification Categories
+Form creation Form Creation: Created an interactive fitness profile form using Streamlit. 
 
-| BMI Range        | Category      |
-|------------------|--------------|
-| Less than 18.5   | Underweight  |
-| 18.5 – 24.9      | Normal       |
-| 25 – 29.9        | Overweight   |
-| 30 and above     | Obese        |
+Personal Information Collected: 
 
-The application automatically classifies the user based on the calculated BMI.
+Name (required) Height in centimeters (compulsory) Weight in kilograms (required) 
 
----
+Fitness Details Collected: 
 
-## 🛠 Steps Performed
+Fitness Goal (Build Muscle, Weight Loss, Strength Gain, Abs Building, Flexible). Equipment at One’s Disposal (Multiple choices allowed- Dumbbells, Resistance Band, Yoga Mat, No Equipment, and more). Fitness Level (Beginner, Intermediate and Advanced). 
 
-### 1️⃣ Form Creation
+Input Validation 
 
-Developed an interactive fitness profile form using Streamlit.
+Validation wise: The required fields are not left blank. Height and weight values should be greater than zero. Warning messages are clearly shown for invalid inputs. 
 
-### 📌 Personal Information Collected:
-- Name (Required)  
-- Height in centimeters (Required)  
-- Weight in kilograms (Required)  
+This ensures that a wrong BMI calculation is not performed on the data. 
 
-### 📌 Fitness Details Collected:
-- Fitness Goal  
-  (Build Muscle, Weight Loss, Strength Gain, Abs Building, Flexible)  
-- Available Equipment  
-  (Multiple selection allowed – Dumbbells, Resistance Band, Yoga Mat, No Equipment, etc.)  
-- Fitness Level  
-  (Beginner, Intermediate, Advanced)  
+BMI Logic Implementation 
 
----
+Converted height from centimeters to meters. Used the BMI formula correctly. Calculated BMI and rounded it to the nearest two decimals. Classified users into BMI categories. The user’s name is also displayed with his calculated BMI and category. 
 
-### 2️⃣ Input Validation
+Deployment 
 
-Implemented validation to ensure:
+Deployed the application on Hugging Face Spaces successfully; Verified functionality after deployment; Made sure the UI was responsive and the results were displayed properly. 
 
-- Required fields are not left empty  
-- Height and weight values are greater than zero  
-- Clear warning messages are displayed for invalid inputs  
+Technologies Used 
 
-This ensures accuracy and prevents incorrect BMI calculations.
+Python Streamlit Hugging Face Spaces Git & GitHub 
 
----
+Live Deployment Link 
 
-### 3️⃣ BMI Logic Implementation
+👉 Hugging Face Space: https://huggingface.co/spaces/Karthik71212/fit_plan 
 
-- Converted height from centimeters to meters  
-- Applied the BMI formula correctly  
-- Rounded BMI to two decimal places  
-- Classified users into the appropriate BMI category  
-- Displayed the user’s name along with calculated BMI and category  
+Project Structure 
 
----
+FitPlan-AI/ Milestone1/     ├── app.py     ├── requirements.txt     ├── README.md     └── screenshots/ 
 
-### 4️⃣ Deployment
+Milestone Completion Status 
 
-- Successfully deployed the application on Hugging Face Spaces  
-- Verified functionality after deployment  
-- Ensured proper UI responsiveness and result display  
+✔ Created User-Friendly Form ✔ BMI Calculation Function; ✔ BMI Classification Added; ✔ Validation of the Inputs ✔ Made a Successful Deployment 
 
----
+Internship Submission 
 
-## 🚀 Technologies Used
-
-- Python  
-- Streamlit  
-- Hugging Face Spaces  
-- Git & GitHub  
-
----
-
-## 🌐 Live Deployment Link
-
-👉 **Hugging Face Space:**  
-(Add your live Hugging Face Space link here)
-https://huggingface.co/spaces/Karthik71212/fit_plan
-
-
-## 📸 Application Screenshots
-
-### 🔹 User Input Form
-
-![User Form](screenshots/form.png)
-
----
-
-### 🔹 BMI Result Output
-
-![BMI Result](screenshots/bmi_result.png)
-
----
-
-## 📂 Project Structure
-
-```
-FitPlan-AI/
-└── Milestone1/
-    ├── app.py
-    ├── requirements.txt
-    ├── README.md
-    └── screenshots/
-```
-
----
-
-## ✅ Milestone Completion Status
-
-✔ User-Friendly Form Created  
-✔ BMI Calculation Implemented  
-✔ BMI Classification Added  
-✔ Input Validation Applied  
-✔ Successfully Deployed  
-
----
-
-## 👨‍💻 Internship Submission  
-**FitPlan AI – Milestone 1**
+FitPlan AI – Milestone 1 
