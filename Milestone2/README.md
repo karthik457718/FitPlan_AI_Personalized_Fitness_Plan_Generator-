@@ -1,163 +1,246 @@
-FitPlan AI – Personalized Fitness Plan Generator
-
-Milestone 2: Core AI Model Integration (LLM-Based Workout Generator)
 
 ⸻
 
-1. Project Overview
+💎 FitPlan AI – Personalized Fitness Plan Generator
 
-This milestone enhances the FitPlan AI system by integrating a Large Language Model (LLM) to generate dynamic and personalized 5-day workout plans.
+🚀 Milestone 2: Core AI Model Integration
 
-The objective of this milestone is to:
-
-• Integrate a pre-trained Large Language Model from Hugging Face
-• Construct structured prompts using user fitness inputs
-• Generate personalized 5-day workout plans dynamically
-• Deploy the AI-powered application on Hugging Face Spaces
-
-This milestone transforms the application from a static BMI calculator into an intelligent AI-driven fitness assistant.
+(LLM-Based Personalized Workout Generator)
 
 ⸻
 
-2. Features Implemented 🤖
+📌 1. Project Overview
 
-AI Workout Plan Generator
+Milestone 2 enhances the FitPlan AI system by integrating a Large Language Model (LLM) to dynamically generate structured and personalized 5-day workout plans.
 
-The application now:
+This milestone transforms the application from a static BMI calculator into a fully functional AI-powered fitness assistant.
 
-• Collects user fitness data from Milestone 1
-• Constructs a structured AI prompt
-• Sends the prompt to a pre-trained Hugging Face LLM
-• Generates a complete 5-day personalized workout plan
-• Displays the formatted workout plan in a styled interface
-
-⸻
-
-Multi-Page Application Structure
-
-The system now uses a multi-page architecture:
-
-Page 1:
-• User profile form
-• Age input added
-• Fitness goal selection
-• Equipment selection
-• Fitness level selection
-
-Page 2:
-• AI-generated 5-day workout plan
-• Displays BMI and BMI category
-• Styled output card
-• Back navigation button
+🎯 Objectives
+	•	Integrate a pre-trained LLM from Hugging Face
+	•	Construct structured prompts using user fitness data
+	•	Generate personalized 5-day workout plans dynamically
+	•	Implement secure API authentication
+	•	Deploy the upgraded AI system on Hugging Face Spaces
 
 ⸻
 
-3. Model Integration 🧠
+🤖 2. Features Implemented
 
-Model Used
+🔥 AI Workout Plan Generator
+
+The system now:
+	•	Collects user fitness data from Milestone 1
+	•	Dynamically constructs a structured AI prompt
+	•	Sends the prompt to a pre-trained Hugging Face model
+	•	Generates a complete 5-day personalized workout plan
+	•	Displays the output in a styled UI workout card
+
+⸻
+
+📄 Multi-Page Application Architecture
+
+The application now uses a structured multi-page flow:
+
+🟢 Page 1 – User Profile Form
+	•	Name input
+	•	Age input (newly added)
+	•	Height & Weight
+	•	Fitness Goal selection
+	•	Fitness Level selection
+	•	Equipment selection
+
+🔵 Page 2 – AI Workout Plan
+	•	Displays BMI & BMI category
+	•	Generates structured 5-day workout plan
+	•	Styled output card with enhanced UI
+	•	Navigation button to return to home
+
+⸻
+
+🧠 3. Model Integration
+
+✅ Model Used
 
 Qwen/Qwen2.5-7B-Instruct
-(Pre-trained instruction-tuned LLM from Hugging Face)
+(Instruction-tuned Large Language Model from Hugging Face)
 
-Model Integration Steps
+⸻
+
+🔧 Model Integration Workflow
 	1.	Imported InferenceClient from huggingface_hub
-	2.	Used secure authentication via HF_TOKEN
-	3.	Constructed chat-style messages
-	4.	Generated structured text output
-	5.	Handled inference errors using try-except blocks
+	2.	Configured secure authentication using HF_TOKEN
+	3.	Constructed chat-based structured messages
+	4.	Generated AI responses using chat_completion()
+	5.	Implemented robust error handling using try–except
 
-Example Model Initialization:
+Example Initialization
+
 client = InferenceClient(
     model="Qwen/Qwen2.5-7B-Instruct",
     token=HF_TOKEN
 )
 
-4. Prompt Engineering Strategy 📝
+📝 4. Prompt Engineering Strategy
 
 The prompt dynamically includes:
+	•	👤 Name
+	•	🎂 Age
+	•	📏 Height & Weight
+	•	📊 Calculated BMI
+	•	🏷 BMI Category
+	•	🎯 Fitness Goal
+	•	🏋️ Fitness Level
+	•	🛠 Available Equipment
 
-• Name
-• Age
-• Height & Weight
-• Calculated BMI
-• BMI Category
-• Fitness Goal
-• Fitness Level
-• Available Equipment
+📌 System Instructions Ensure:
+	•	Clearly divided Day 1 to Day 5
+	•	Exercise names
+	•	Sets & repetitions
+	•	Rest intervals
+	•	Intensity adjustments based on BMI
+	•	Beginner safety considerations
 
-The system instruction ensures:
-
-• 5 clearly divided workout days
-• Exercise names
-• Sets and reps
-• Rest periods
-• Intensity adjusted to BMI category
-• Beginner safety considerations
-
-This structured prompt ensures high-quality, organized AI responses.
+This structured approach guarantees consistent, high-quality AI responses.
 
 ⸻
 
-5. Error Handling & Validation ⚙️
+⚙️ 5. Error Handling & Validation
 
 The application includes:
-
-• HF_TOKEN validation
-• Model inference error handling
-• Graceful fallback messages
-• Required field validation
-• Session state management for multi-page flow
-
-⸻
-
-6. Testing Scenarios 🧪
-
-The model was tested using multiple user profiles:
-
-Scenario 1:
-• Beginner
-• Weight loss goal
-• No equipment
-
-Scenario 2:
-• Intermediate
-• Muscle building
-• Dumbbells & Bench
-
-Scenario 3:
-• Advanced
-• Strength gain
-• Full equipment
-
-Each scenario successfully generated structured 5-day workout plans.
+	•	✅ Secure HF_TOKEN validation
+	•	✅ Model inference error handling
+	•	✅ Graceful fallback messages
+	•	✅ Required field validation
+	•	✅ Session state management for multi-page flow
 
 ⸻
 
-7. Deployment 🚀
+🧪 6. Testing Scenarios
 
-The updated AI-powered application is deployed on Hugging Face Spaces.
+The model was tested with diverse user profiles:
 
-Live Link:
+Scenario 1
+	•	Beginner
+	•	Weight Loss
+	•	No Equipment
+
+Scenario 2
+	•	Intermediate
+	•	Muscle Building
+	•	Dumbbells & Bench
+
+Scenario 3
+	•	Advanced
+	•	Strength Gain
+	•	Full Equipment
+
+Each scenario successfully generated structured and realistic 5-day workout plans.
+
+⸻
+
+🚀 7. Deployment
+
+The upgraded AI-powered application is successfully deployed on Hugging Face Spaces.
+
+🔗 Live Application
 
 👉 https://huggingface.co/spaces/Karthik71212/fit_plan
 
-Deployment Verification:
-
-• Model loads successfully
-• HF_TOKEN authentication verified
-• Multi-page navigation working
-• Workout plan generation functioning
-• Clean UI rendering
+✔ Deployment Verification
+	•	Model loads successfully
+	•	Authentication works via HF_TOKEN
+	•	Multi-page navigation functioning
+	•	AI plan generation working
+	•	Clean UI rendering
 
 ⸻
 
-8. Technologies Used 🛠️
-Technology	Purpose
-Python	Core programming language
-Streamlit	Web application framework
-Hugging Face Spaces	Deployment platform
-Git & GitHub	Version control and code hosting
-9. Updated Project Structure 📂
+🛠 8. Technologies Used
+## 🛠 Technologies Used
+
+| Technology            | Purpose                                   |
+|-----------------------|-------------------------------------------|
+| Python                | Core programming language                 |
+| Streamlit             | Multi-page web application framework      |
+| Hugging Face Hub      | LLM inference integration                 |
+| Hugging Face Spaces   | Deployment platform                       |
+| Git & GitHub          | Version control & repository hosting      |
+| Prompt Engineering    | Structured AI response generation         |
+
+
+
+FitPlan-AI/
+└── Milestone2/
+    ├── app.py
+    ├── model_api.py
+    ├── prompt_builder.py
+    ├── requirements.txt
+    ├── README.md
+    ├── pages/
+    │   └── 1_Workout_Plan.py
+    └── screenshots/
+
+⸻
+
+📝 4. Prompt Engineering Strategy
+
+The system dynamically constructs prompts including:
+	•	User Profile Data
+	•	Calculated BMI & Category
+	•	Fitness Goal
+	•	Fitness Level
+	•	Available Equipment
+
+System Instruction Ensures:
+	•	5 clearly separated workout days
+	•	Specific exercises with sets/reps
+	•	Rest periods
+	•	Intensity adjusted to BMI category
+	•	Beginner safety guidelines
+
+⸻
+
+⚙️ 5. Error Handling & Validation
+	•	HF_TOKEN authentication check
+	•	Model inference error handling
+	•	Graceful fallback messages
+	•	Required field validation
+	•	Session state management
+
+⸻
+
+🧪 6. Testing Scenarios
+	•	Beginner – Weight loss – No equipment
+	•	Intermediate – Muscle gain – Dumbbells
+	•	Advanced – Strength gain – Full equipment
+
+All scenarios successfully generated structured 5-day workout plans.
+
+⸻
+
+🚀 7. Deployment
+
+Deployed on Hugging Face Spaces:
+
+👉 https://huggingface.co/spaces/Karthik71212/fit_plan
+
+Verification Confirmed:
+	•	Model loads successfully
+	•	Multi-page navigation works
+	•	Workout generation functional
+	•	UI renders correctly
+
+⸻
+
+🛠️ 8. Technologies Used
+	•	Python – Core language
+	•	Streamlit – Web framework
+	•	Hugging Face Spaces – Deployment
+	•	Git & GitHub – Version control
+
+⸻
+
+📂 9. Updated Project Structure
 
 FitPlan-AI/
 ├── Milestone2/
@@ -172,18 +255,17 @@ FitPlan-AI/
 
 ⸻
 
-10. Milestone Completion Status ✔
-
-✔ Large Language Model integrated
-✔ Secure token authentication implemented
-✔ Structured prompt design completed
-✔ AI-generated 5-day workout plan working
-✔ Multi-page architecture implemented
-✔ Deployed successfully on Hugging Face
-✔ Error handling and validation added
+✔ 10. Milestone Completion Status
+	•	✔ LLM Integrated
+	•	✔ Secure Authentication
+	•	✔ Structured Prompt Design
+	•	✔ 5-Day Workout Generation
+	•	✔ Multi-Page Architecture
+	•	✔ Successful Deployment
+	•	✔ Error Handling Added
 
 ⸻
 
-11. Internship Submission
+🎓 11. Internship Submission
 
-This completes Milestone 2 of the FitPlan AI project, transforming the system into an AI-powered personalized fitness planner.
+Milestone 2 is now complete, transforming FitPlan AI into a fully functional AI-powered personalized fitness planner.
