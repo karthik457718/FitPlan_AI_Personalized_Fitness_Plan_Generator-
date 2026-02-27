@@ -168,7 +168,7 @@ The upgraded AI-powered application is successfully deployed on Hugging Face Spa
 | Prompt Engineering    | Structured AI response generation         |
 
 
-
+```
 FitPlan-AI/
 └── Milestone2/
     ├── app.py
@@ -179,6 +179,7 @@ FitPlan-AI/
     ├── pages/
     │   └── 1_Workout_Plan.py
     └── screenshots/
+```
 
 ⸻
 
@@ -240,19 +241,20 @@ Verification Confirmed:
 
 ⸻
 
-📂 9. Updated Project Structure
+## 📂 Updated Project Structure
 
+```
 FitPlan-AI/
-├── Milestone2/
-│   ├── app.py
-│   ├── model_api.py
-│   ├── prompt_builder.py
-│   ├── requirements.txt
-│   ├── README.md
-│   ├── pages/
-│   │   └── 1_Workout_Plan.py
-│   └── screenshots/
-
+└── Milestone2/
+    ├── app.py
+    ├── model_api.py
+    ├── prompt_builder.py
+    ├── requirements.txt
+    ├── README.md
+    ├── pages/
+    │   └── 1_Workout_Plan.py
+    └── screenshots/
+```
 ⸻
 
 ✔ 10. Milestone Completion Status
