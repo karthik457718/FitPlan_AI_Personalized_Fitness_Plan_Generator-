@@ -41,7 +41,7 @@ https://huggingface.co/spaces/Karthik71212/FIT_PLAN_B
 ### 2. OTP Verification Screen
 ![OTP Verification](Screenshots/Screenshot%202.png)
 ![OTP Verification](Screenshots/Screenshot%203.png)
-![OTP Verification](Screenshots/Screenshot%204.jpeg)
+![OTP Verification](Screenshots/Screenshot&204.png)
 
 ### 3. Successful Account Creation
 ![Account Creation](Screenshots/Screenshot%205.png)
